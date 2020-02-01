@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.7.4
 COPY ./app.py /deploy/
 COPY ./requirements.txt /deploy/
 COPY ./iris_trained_model.pkl /deploy/
