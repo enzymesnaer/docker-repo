@@ -1,14 +1,8 @@
-FROM alpine:3.1
-
-#Update
-RUN apk add --update python py-pip
-
-#Install app dependicies
-# RUN pip install Flask
+FROM python:3.6-slim
+COPY ./app.py /deploy/
+COPY ./requirements.txt /deploy/
+COPY ./iris_trained_model.pkl /deploy/
+WORKDIR /deploy/
 RUN pip install -r requirements.txt
-
-#Bundle app source
-COPY simpleapp.py /src/simpleapp.py
-
-EXPOSE 8000
-CMD ["python", "/src/simpleapp.py", "-p 8000"]
+EXPOSE 80
+ENTRYPOINT ["python", "app.py"]
